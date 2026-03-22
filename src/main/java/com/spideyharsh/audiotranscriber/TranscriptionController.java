@@ -26,10 +26,8 @@ import java.io.IOException;
 public class TranscriptionController {
     private final OpenAiAudioTranscriptionModel transcriptionModel;
 
-    public TranscriptionController(@Value("${spring.ai.openai.audio.transcription.base-url}") String baseURL,@Value("${spring.ai.openai.api-key}") String apiKey, RestClient restClient, WebClient webClient) {
-        OpenAiAudioApi openAiAudioApi = new OpenAiAudioApi(baseURL,apiKey, restClient,webClient);
-        this.transcriptionModel = new OpenAiAudioTranscriptionModel(openAiAudioApi);
-        System.out.println("baseURL: "+baseURL +" apiKey: "+apiKey);
+    public TranscriptionController(OpenAiAudioTranscriptionModel transcriptionModel) {
+        this.transcriptionModel = transcriptionModel;
     }
 
     @PostMapping
